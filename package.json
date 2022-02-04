@@ -1,0 +1,28 @@
+{
+  "name": "u12-hw-sql-employee-tracker",
+  "version": "1.0.0",
+  "description": "ITESM Coding Bootcamp - Unit 12 Homework - SQL: Employee Tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josevidmal/u12-hw-sql-employee-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josevidmal/u12-hw-sql-employee-tracker/issues"
+  },
+  "homepage": "https://github.com/josevidmal/u12-hw-sql-employee-tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7"
+  }
+}

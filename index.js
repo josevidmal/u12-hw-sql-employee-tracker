@@ -1,6 +1,8 @@
 require('dotenv').config();
 const mysql = require("mysql2");
+const cTable = require("console.table");
 const inquirer = require("inquirer");
+const figlet = require("figlet");
 
 const connection = mysql.createConnection(
     {
@@ -119,8 +121,30 @@ const addDepartment = () => {
         .then((answers) => {
             todoQuestion();
         });
-};
+}; 
+
+const systemLogo = () => {
+    figlet.text(" \nMy HR \nSystem \n ", {
+        font: "Larry 3D",
+        horizontalLayout: "fitted",
+        verticalLayout: "full"
+    }, (err, data) => {
+        if (err) {
+            console.log("An error ocurred");
+            console.dir(err);
+            return;
+        } else {
+            console.log(data)
+        }
+    }
+)};
 
 function init() {
-    todoQuestion();
-}
+    systemLogo()
+
+    setTimeout(() => {
+        todoQuestion();
+    }, 1000)
+};
+
+init();

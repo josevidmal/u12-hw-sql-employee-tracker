@@ -1,10 +1,11 @@
-require('dotenv').config();
-const mysql = require("mysql2");
-const cTable = require("console.table");
+// require('dotenv').config();
+// const mysql = require("mysql2");
+require("console.table");
 const inquirer = require("inquirer");
 const figlet = require("figlet");
+const Query = require("./db/query");
 
-const connection = mysql.createConnection(
+/* const connection = mysql.createConnection(
     {
         host: process.env.host,
         user: process.env.user,
@@ -12,7 +13,7 @@ const connection = mysql.createConnection(
         database: process.env.database,
     },
     console.log('Connected to the hr_db database.')
-);
+); */
 
 const todoQuestion = () => {
     inquirer
@@ -25,7 +26,11 @@ const todoQuestion = () => {
             },
         )
 
-        .then((answers) => {})
+        .then((answers) => {
+            if (answers.to_do === "View All Departments") {
+                viewAllDepartments();
+            }
+        });
 };
 
 const addEmployee = () => {
@@ -121,7 +126,7 @@ const addDepartment = () => {
         .then((answers) => {
             todoQuestion();
         });
-}; 
+};
 
 const systemLogo = () => {
     figlet.text(" \nMy HR \nSystem \n ", {
@@ -135,16 +140,26 @@ const systemLogo = () => {
             return;
         } else {
             console.log(data)
+            todoQuestion();
         }
     }
-)};
+    )
+};
 
 function init() {
     systemLogo()
 
-    setTimeout(() => {
+    /* setTimeout(() => {
         todoQuestion();
-    }, 1000)
+    }, 1000) */
 };
 
 init();
+
+
+function viewAllDepartments () {
+    Query.viewAllDepartments().then((data) => {
+        console.table(data[0]);
+        todoQuestion();
+    })
+}

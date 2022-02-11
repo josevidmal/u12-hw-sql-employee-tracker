@@ -29,6 +29,10 @@ const todoQuestion = () => {
         .then((answers) => {
             if (answers.to_do === "View All Departments") {
                 viewAllDepartments();
+            } if (answers.to_do === "View All Roles") {
+                viewAllRoles();
+            } if (answers.to_do === "View All Employees") {
+                viewAllEmployees();
             }
         });
 };
@@ -146,7 +150,7 @@ const systemLogo = () => {
     )
 };
 
-function init() {
+const init = () => {
     systemLogo()
 
     /* setTimeout(() => {
@@ -157,9 +161,23 @@ function init() {
 init();
 
 
-function viewAllDepartments () {
+const viewAllDepartments = () => {
     Query.viewAllDepartments().then((data) => {
         console.table(data[0]);
         todoQuestion();
-    })
-}
+    });
+};
+
+const viewAllRoles = () => {
+    Query.viewAllRoles().then((data) => {
+        console.table(data[0]);
+        todoQuestion();
+    });
+};
+
+const viewAllEmployees = () => {
+    Query.viewAllEmployees().then((data) => {
+        console.table(data[0]);
+        todoQuestion();
+    });
+};

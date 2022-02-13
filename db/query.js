@@ -26,7 +26,7 @@ class Query {
     };
 
     selectDepartment() {
-        return this.connect.promise().query("SELECT name FROM department");
+        return this.connect.promise().query("SELECT name, id AS value FROM department");
     }
 
     newEmployee(first_name, last_name, role_id, manager_id) {
@@ -34,19 +34,19 @@ class Query {
     };
 
     selectTitle() {
-        return this.connect.promise().query("SELECT title FROM role");
+        return this.connect.promise().query("SELECT title AS name, id AS value FROM role");
     };
 
     selectManager() {
-        return this.connect.promise().query("SELECT CONCAT(first_name, ' ', last_name) AS manager FROM employee");
+        return this.connect.promise().query("SELECT CONCAT(first_name, ' ', last_name) AS name, id AS value FROM employee");
     };
 
-    updateEmployeeRole(role_id, first_name, last_name) {
-        return this.connect.promise().query(`UPDATE employee SET role_id = (?) WHERE first_name = (?) AND last_name = (?)`, [role_id, first_name, last_name]);
+    updateEmployeeRole(role_id, employee_id) {
+        return this.connect.promise().query(`UPDATE employee SET role_id = (?) WHERE id = (?)`, [role_id, employee_id]);
     };
 
     selectEmployee() {
-        return this.connect.promise().query("SELECT CONCAT(first_name, ' ', last_name) AS employee FROM employee");
+        return this.connect.promise().query("SELECT CONCAT(first_name, ' ', last_name) AS name, id AS value FROM employee");
     };
 };
 

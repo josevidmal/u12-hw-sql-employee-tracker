@@ -1,21 +1,9 @@
-// require('dotenv').config();
-// const mysql = require("mysql2");
 require("console.table");
 const inquirer = require("inquirer");
 const figlet = require("figlet");
 const Query = require("./db/query");
 const { prompts } = require("inquirer");
 const { escape } = require("./src/connection");
-
-/* const connection = mysql.createConnection(
-    {
-        host: process.env.host,
-        user: process.env.user,
-        password: process.env.password,
-        database: process.env.database,
-    },
-    console.log('Connected to the hr_db database.')
-); */
 
 const todoQuestion = () => {
     inquirer
@@ -51,10 +39,16 @@ const todoQuestion = () => {
 
 const addEmployee = () => {
     Query.selectTitle().then((data) => {
-        const titleChoices = data[0].map(a => a.title);
+        const titleChoices = data[0];
 
     Query.selectManager().then((data) => {
-        const managerChoices = data[0].map(a => a.manager);
+        const none = {
+            name: "No Manager",
+            value: null,
+        }
+        
+        data[0].unshift(none);
+        const managerChoices = data[0];
 
     inquirer
         .prompt([
@@ -91,10 +85,10 @@ const addEmployee = () => {
 
 const updateEmpRole = () => {
     Query.selectEmployee().then((data) => {
-        const employeeChoices = data[0].map(a => a.employee);
+        const employeeChoices = data[0];
 
     Query.selectTitle().then((data) => {
-        const titleChoices = data[0].map(a => a.title);
+        const titleChoices = data[0];
 
     inquirer
         .prompt([
@@ -121,7 +115,7 @@ const updateEmpRole = () => {
 
 const addRole = () => {
     Query.selectDepartment().then((data) => {
-        const departmentChoices = data[0].map(a => a.name);
+        const departmentChoices = data[0];
     
     inquirer
         .prompt([
@@ -227,11 +221,13 @@ const newRole = (title, salary, department) => {
 const newEmployee = (first_name, last_name, role_id, manager_id) => {
     Query.newEmployee(first_name, last_name, role_id, manager_id).then(() => {
         console.log(`Added ${first_name} ${last_name} to the database`);
+        todoQuestion();
     });
 };
 
-const updateEmployeeRole = (role_id, first_name, last_name) => {
-    Query.updateEmployeeRole(role_id, first_name, last_name).then(() => {
+const updateEmployeeRole = (role_id, employee_id) => {
+    Query.updateEmployeeRole(role_id, employee_id).then(() => {
         console.log(`Updated employee's role`);
+        todoQuestion();
     });
 };

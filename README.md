@@ -13,9 +13,9 @@ Next, using Inquirer package, I added the code to index.js file to set all the q
 
 Finally, in the query.js file I wrote the code to create a `class Query` with several methods that use MySQL2 `.promise()` function to make MySQL queries to be asynchronous. All these methods are called in index.js file in separate functions (some of them with certain parameters) that perform a certain action, like `viewAllDepartments()`, `viewAllRoles()`, `viewAllEmployees()`, `newDepartment()`, `newRole()`, `newEmployee()` and `updateEmployeeRole()`.
 
-## Usage & [Walkthrough Video]()
+## Usage & [Walkthrough Video](https://drive.google.com/file/d/12jUVvr-970AYXWtKrB8SAeIDs8KPqIMY/view?usp=sharing)
 
-To see the application in use watch this [Walkthrough Video]()
+To see the application in use watch this [Walkthrough Video](https://drive.google.com/file/d/12jUVvr-970AYXWtKrB8SAeIDs8KPqIMY/view?usp=sharing)
 
 The application looks like this:
 

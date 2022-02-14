@@ -2,8 +2,6 @@ require("console.table");
 const inquirer = require("inquirer");
 const figlet = require("figlet");
 const Query = require("./db/query");
-const { prompts } = require("inquirer");
-const { escape } = require("./src/connection");
 
 const todoQuestion = () => {
     inquirer
